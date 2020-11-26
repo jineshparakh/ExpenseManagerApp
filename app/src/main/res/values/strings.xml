@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Expense Manager</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="welcome_back">Welcome Back!</string>
 </resources>
