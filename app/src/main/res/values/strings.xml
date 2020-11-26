@@ -2,4 +2,5 @@
     <string name="app_name">Expense Manager</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="welcome_back">Welcome Back!</string>
+    <string name="don_t_have_an_account_yet_signup_now">Don\'t have an account yet? SignUp Now!</string>
 </resources>

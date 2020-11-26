@@ -20,7 +20,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome_back "
+                android:text="@string/welcome_back"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:gravity="center"
                 />
@@ -53,7 +53,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="5dp"
+                android:id="@+id/forgot_password"
                 android:text="@string/forgot_password"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:id="@+id/signup"
+                android:text="@string/don_t_have_an_account_yet_signup_now"
+
                 />
         </LinearLayout>
     </ScrollView>
