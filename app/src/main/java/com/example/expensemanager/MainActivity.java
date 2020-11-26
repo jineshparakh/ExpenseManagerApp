@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private TextView mForgotPassword;
     private TextView mSignup;
-
+    private TextView m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
