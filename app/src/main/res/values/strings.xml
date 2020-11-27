@@ -4,4 +4,7 @@
     <string name="welcome_back">Welcome Back!</string>
     <string name="don_t_have_an_account_yet_signup_now">Don\'t have an account yet? SignUp Now!</string>
     <string name="you_seem_new_here_signup">You Seem New Here? SignUp</string>
+
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
 </resources>
