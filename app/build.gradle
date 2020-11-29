@@ -47,9 +47,10 @@ dependencies {
     implementation 'com.android.support:cardview-v7:30.+'
 
     implementation 'com.android.support:support-v4:30.+'
-    androidTestCompile 'com.android.support:support-annotations:23.3.0'
-    androidTestCompile 'com.android.support.test:runner:0.3'
-    androidTestCompile 'com.android.support.test:rules:0.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    androidTestImplementation 'com.android.support:support-annotations:23.3.0'
+    androidTestImplementation 'com.android.support.test:runner:0.3'
+    androidTestImplementation 'com.android.support.test:rules:0.3'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

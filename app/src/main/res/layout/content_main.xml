@@ -6,37 +6,25 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:id="@+id/bottomNavbar"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        app:menu="@menu/bottommenu"
-        android:layout_marginLeft="0dp">
-        android:layout_alignParentStart="true">
-        android:layout_alignParentBottom="true">
+        app:menu="@menu/bottommenu">
 
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavbar"
         android:id="@+id/main_frame"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-       android:layout_above="@+id/bottomNavbar"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp">
-
+        android:layout_alignParentStart="true"
+        android:layout_height="match_parent">
 
     </FrameLayout>
-
 
 </RelativeLayout>
