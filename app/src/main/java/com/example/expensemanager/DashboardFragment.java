@@ -92,34 +92,38 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 addData();
-                if(isOpen){
-                    fab_income.startAnimation(fadeClose);
-                    fab_expense.startAnimation(fadeClose);
-                    fab_income.setClickable(false);
-                    fab_expense.setClickable(false);
-                    fab_income_text.startAnimation(fadeClose);
-                    fab_expense_text.startAnimation(fadeClose);
-                    fab_income_text.setClickable(false);
-                    fab_expense_text.setClickable(false);
-                }
-                else{
-                    fab_income.startAnimation(fadeOpen);
-                    fab_expense.startAnimation(fadeOpen);
-                    fab_income.setClickable(true);
-                    fab_expense.setClickable(true);
-                    fab_expense_text.startAnimation(fadeOpen);
-                    fab_income_text.startAnimation(fadeOpen);
-                    fab_income_text.setClickable(true);
-                    fab_expense_text.setClickable(true);
-                }
-                isOpen=!isOpen;
-
+                floatingButtonAnimation();
             }
         });
 
         return myview;
     }
+    //Floating button animation
 
+    private void floatingButtonAnimation(){
+        if(isOpen){
+            fab_income.startAnimation(fadeClose);
+            fab_expense.startAnimation(fadeClose);
+            fab_income.setClickable(false);
+            fab_expense.setClickable(false);
+            fab_income_text.startAnimation(fadeClose);
+            fab_expense_text.startAnimation(fadeClose);
+            fab_income_text.setClickable(false);
+            fab_expense_text.setClickable(false);
+        }
+        else{
+            fab_income.startAnimation(fadeOpen);
+            fab_expense.startAnimation(fadeOpen);
+            fab_income.setClickable(true);
+            fab_expense.setClickable(true);
+            fab_expense_text.startAnimation(fadeOpen);
+            fab_income_text.startAnimation(fadeOpen);
+            fab_income_text.setClickable(true);
+            fab_expense_text.setClickable(true);
+        }
+        isOpen=!isOpen;
+
+    }
     private void addData(){
         //Fab Button Income
         fab_income.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +136,7 @@ public class DashboardFragment extends Fragment {
         fab_expense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                insertExpenseData();
             }
         });
     }
@@ -186,6 +190,70 @@ public class DashboardFragment extends Fragment {
                 Toast.makeText(getActivity(), "Transaction Added Successfully!", Toast.LENGTH_SHORT).show();
 
                 dialog.dismiss();
+                floatingButtonAnimation();
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                floatingButtonAnimation();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    public void insertExpenseData(){
+        AlertDialog.Builder mydialog=new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater=LayoutInflater.from(getActivity());
+
+        View myview=inflater.inflate(R.layout.custom_layout_for_insertdata, null);
+        mydialog.setView(myview);
+
+        final AlertDialog dialog=mydialog.create();
+        EditText edtamount=myview.findViewById(R.id.amount);
+        EditText edttype=myview.findViewById(R.id.type_edt);
+        EditText edtnote=myview.findViewById(R.id.note_edt);
+
+        Button saveBtn=myview.findViewById(R.id.btnSave);
+        Button cancelBtn=myview.findViewById(R.id.btnCancel);
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String amount=edtamount.getText().toString().trim();
+                String type=edttype.getText().toString().trim();
+                String note=edtnote.getText().toString().trim();
+
+                if(TextUtils.isEmpty(type)){
+                    edttype.setError("Please Enter A Type");
+                    return;
+                }
+                if(TextUtils.isEmpty(amount)){
+                    edtamount.setError("Please Enter Amount");
+                    return;
+                }
+                if(TextUtils.isEmpty(note)){
+                    edtnote.setError("Please Enter A Note");
+                    return;
+                }
+                float amountInFloat=Float.parseFloat(amount);
+
+                //Create random ID inside database
+                String id=mExpenseDatabase.push().getKey();
+
+                String mDate= DateFormat.getDateInstance().format(new Date());
+
+                Data data=new Data(amountInFloat, type, note, id, mDate);
+
+                mExpenseDatabase.child(id).setValue(data);
+
+                Toast.makeText(getActivity(), "Transaction Added Successfully!", Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+                floatingButtonAnimation();
             }
         });
 
@@ -193,6 +261,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                floatingButtonAnimation();
             }
         });
         dialog.show();
