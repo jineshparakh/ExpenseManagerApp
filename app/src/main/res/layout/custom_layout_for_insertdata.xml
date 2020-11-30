@@ -148,6 +148,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/holo_green_dark"
+                        android:textAppearance="?android:textAppearanceMedium"
                         android:backgroundTint="@android:color/holo_green_dark"
                         android:text="SAVE"
                         app:backgroundTint="#22CF29" />

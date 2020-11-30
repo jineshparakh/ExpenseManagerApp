@@ -147,8 +147,8 @@ public class DashboardFragment extends Fragment {
 
         View myview=inflater.inflate(R.layout.custom_layout_for_insertdata, null);
         mydialog.setView(myview);
-        AlertDialog dialog=mydialog.create();
-
+        final AlertDialog dialog=mydialog.create();
+        dialog.setCancelable(false);
         EditText edtamount=myview.findViewById(R.id.amount);
         EditText edtType=myview.findViewById(R.id.type_edt);
         EditText edtNote=myview.findViewById(R.id.note_edt);
@@ -213,6 +213,7 @@ public class DashboardFragment extends Fragment {
         mydialog.setView(myview);
 
         final AlertDialog dialog=mydialog.create();
+        dialog.setCancelable(false);
         EditText edtamount=myview.findViewById(R.id.amount);
         EditText edttype=myview.findViewById(R.id.type_edt);
         EditText edtnote=myview.findViewById(R.id.note_edt);
