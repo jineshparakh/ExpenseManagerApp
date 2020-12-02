@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.example.expensemanager.Model.Data;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseApp;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +33,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -89,6 +93,9 @@ public class DashboardFragment extends Fragment {
 
         mIncomeDatabase= FirebaseDatabase.getInstance().getReference().child("IncomeData").child(uid);
         mExpenseDatabase=FirebaseDatabase.getInstance().getReference().child("ExpenseData").child(uid);
+
+        mIncomeDatabase.keepSynced(true);
+        mExpenseDatabase.keepSynced(true);
         //Connect Floating Button to layout
 
         fab_main=myview.findViewById(R.id.fb_main_plus_btn);
@@ -273,14 +280,14 @@ public class DashboardFragment extends Fragment {
                     edtNote.setError("Please Enter A Note");
                     return;
                 }
-                float amountInFloat=Float.parseFloat(amount);
+                int amountInInt=Integer.parseInt(amount);
 
                 //Create random ID inside database
                 String id=mIncomeDatabase.push().getKey();
 
                 String mDate= DateFormat.getDateInstance().format(new Date());
 
-                Data data=new Data(amountInFloat, type, note, id, mDate);
+                Data data=new Data(amountInInt, type, note, id, mDate);
 
                 mIncomeDatabase.child(id).setValue(data);
 
@@ -337,14 +344,14 @@ public class DashboardFragment extends Fragment {
                     edtnote.setError("Please Enter A Note");
                     return;
                 }
-                float amountInFloat=Float.parseFloat(amount);
+                int amountInInt= Integer.parseInt(amount);
 
                 //Create random ID inside database
                 String id=mExpenseDatabase.push().getKey();
 
                 String mDate= DateFormat.getDateInstance().format(new Date());
 
-                Data data=new Data(amountInFloat, type, note, id, mDate);
+                Data data=new Data(amountInInt, type, note, id, mDate);
 
                 mExpenseDatabase.child(id).setValue(data);
 
@@ -363,5 +370,96 @@ public class DashboardFragment extends Fragment {
             }
         });
         dialog.show();
+    }
+
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        FirebaseRecyclerAdapter<Data, IncomeViewHolder> incomeAdapter=new FirebaseRecyclerAdapter<Data, IncomeViewHolder>(
+                Data.class,
+                R.layout.dashboard_income,
+                DashboardFragment.IncomeViewHolder.class,
+                mIncomeDatabase
+        ) {
+            @Override
+            protected void populateViewHolder(IncomeViewHolder incomeViewHolder, Data data, int i) {
+                incomeViewHolder.setIncomeType(data.getType());
+                incomeViewHolder.setIncomeAmount(data.getAmount());
+                incomeViewHolder.setIncomeDate(data.getDate());
+
+            }
+        };
+        mRecyclerIncome.setAdapter(incomeAdapter);
+
+        FirebaseRecyclerAdapter<Data, ExpenseViewHolder> expenseAdapter= new FirebaseRecyclerAdapter<Data, ExpenseViewHolder>(
+                Data.class,
+                R.layout.dashboard_expense,
+                DashboardFragment.ExpenseViewHolder.class,
+                mExpenseDatabase
+        ) {
+            @Override
+            protected void populateViewHolder(ExpenseViewHolder expenseViewHolder, Data data, int i) {
+                expenseViewHolder.setExpenseType(data.getType());
+                expenseViewHolder.setExpenseAmount(data.getAmount());
+                expenseViewHolder.setExpenseDate(data.getDate());
+            }
+        };
+        mRecyclerExpense.setAdapter(expenseAdapter);
+    }
+
+    // For income Data
+
+    public static class IncomeViewHolder extends RecyclerView.ViewHolder{
+            View mIncomeView;
+        public IncomeViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mIncomeView=itemView;
+        }
+        public void setIncomeType(String type){
+            TextView mtype=mIncomeView.findViewById(R.id.type_Income_ds);
+            Log.i("TYPE", type);
+            mtype.setText(type);
+        }
+
+        public void setIncomeAmount(int amount){
+            TextView mAmount=mIncomeView.findViewById(R.id.amount_Income_ds);
+            String strAmount=String.valueOf(amount);
+            Log.i("AMOUNT", strAmount);
+            mAmount.setText(strAmount);
+        }
+
+        public void setIncomeDate(String date){
+            TextView mDate=mIncomeView.findViewById(R.id.date_Income_ds);
+            Log.i("DATE", date);
+            mDate.setText(date);
+        }
+
+    }
+
+    // For expense Data
+
+    public static class ExpenseViewHolder extends  RecyclerView.ViewHolder{
+
+        View mExpenseView;
+        public ExpenseViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mExpenseView=itemView;
+        }
+        public void setExpenseType(String type){
+            TextView mtype=mExpenseView.findViewById(R.id.type_Expense_ds);
+            mtype.setText(type);
+        }
+        public void setExpenseAmount(int amount){
+            TextView mAmount=mExpenseView.findViewById(R.id.amount_Expense_ds);
+            String strAmount=String.valueOf(amount);
+            mAmount.setText(strAmount);
+
+        }
+        public void setExpenseDate(String date){
+            TextView mDate=mExpenseView.findViewById(R.id.date_Expense_ds);
+            mDate.setText(date);
+        }
     }
 }

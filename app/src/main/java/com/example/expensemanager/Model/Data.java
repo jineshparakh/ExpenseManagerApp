@@ -1,13 +1,13 @@
 package com.example.expensemanager.Model;
 
 public class Data {
-    private float amount;
+    private int amount;
     private String type;
     private String note;
     private String id;
     private String date;
 
-    public Data(float amount, String type, String note, String id, String date) {
+    public Data(int amount, String type, String note, String id, String date) {
         this.amount = amount;
         this.type = type;
         this.note = note;
@@ -15,11 +15,11 @@ public class Data {
         this.date = date;
     }
 
-    public float getAmount() {
-        return amount;
+    public int getAmount() {
+        return (int) amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
