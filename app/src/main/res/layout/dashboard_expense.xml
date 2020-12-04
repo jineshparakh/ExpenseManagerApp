@@ -30,6 +30,7 @@
             android:text="Amount:"
             android:padding="5dp"
             android:layout_marginTop="10dp"
+            android:textColor="@android:color/holo_red_dark"
             android:textAppearance="?android:textAppearanceMedium"
             android:id="@+id/amount_Expense_ds"
             android:layout_height="wrap_content"
@@ -40,6 +41,7 @@
             android:layout_height="wrap_content"
             android:text="2 Dec 2020"
             android:padding="5dp"
+
             android:textAppearance="?android:textAppearanceMedium"
             android:gravity="center"
             android:id="@+id/date_Expense_ds"

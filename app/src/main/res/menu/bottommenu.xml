@@ -4,6 +4,9 @@
     <item android:id="@+id/dashboard"
         android:title="Dashboard"
         android:icon="@drawable/dashboard"/>
+    <item android:id="@+id/stats"
+        android:title="Stats"
+        android:icon="@drawable/stats"/>
 
     <item android:id="@+id/income"
         android:title="Income"
@@ -12,5 +15,7 @@
     <item android:id="@+id/expense"
         android:title="Expense"
         android:icon="@drawable/expense"/>
+
+
 
 </menu>

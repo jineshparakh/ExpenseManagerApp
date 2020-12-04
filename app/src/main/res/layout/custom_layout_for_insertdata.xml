@@ -72,12 +72,12 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="2">
+
                     <EditText
+                        android:id="@+id/type_edt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/type_edt"
-                        android:hint="Enter Type Of Transaction"
-                        />
+                        android:hint="Enter Type Of Transaction" />
                 </RelativeLayout>
             </LinearLayout>
 

@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             mDialog.dismiss();
                             Toast.makeText(getApplicationContext(),"Login Successful!",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            finish();
                         }
                         else{
                             mDialog.dismiss();
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),ResetPasswordActivity.class));
+
             }
         });
     }

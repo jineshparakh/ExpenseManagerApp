@@ -10,4 +10,15 @@
     <string name="expense_manager">Expense Manager</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="typesOfTransactions">
+        <item>Food</item>
+        <item>Social Life</item>
+        <item>Transportation</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>
