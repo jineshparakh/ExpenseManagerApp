@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.common.math.Stats;
 import com.google.firebase.auth.FirebaseAuth;
 
 import static com.example.expensemanager.R.string.navigation_drawer_open;
@@ -38,6 +39,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DashboardFragment dashboardFragment;
     private IncomeFragment incomeFragment;
     private ExpenseFragment expenseFragment;
+    private StatsFragment statsFragment;
 
     private FirebaseAuth mAuth;
 
@@ -78,6 +80,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         dashboardFragment=new DashboardFragment();
         incomeFragment=new IncomeFragment();
         expenseFragment=new ExpenseFragment();
+        statsFragment=new StatsFragment();
 
         setFragment(dashboardFragment);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -93,6 +96,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         return true;
                     case R.id.expense:
                         setFragment(expenseFragment);
+                        return true;
+                    case R.id.stats:
+                        setFragment(statsFragment);
                         return true;
 
                     default:
@@ -144,6 +150,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.expense:
                 bottomNavigationView.setSelectedItemId(R.id.expense);
                 fragment=new ExpenseFragment();
+                break;
+            case R.id.stats:
+                bottomNavigationView.setSelectedItemId(R.id.stats);
+                bottomNavigationView.findViewById(R.id.stats).performClick();
+                bottomNavigationView.performClick();
+                fragment=new StatsFragment();
+                break;
+            case R.id.account:
+                fragment=new AccountFragment();
                 break;
             case R.id.logout:
                 mAuth.signOut();

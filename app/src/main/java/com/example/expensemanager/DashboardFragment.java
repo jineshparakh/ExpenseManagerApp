@@ -138,7 +138,6 @@ public class DashboardFragment extends Fragment {
                 int total = 0;
 
                 for(DataSnapshot mysnap: snapshot.getChildren()){
-
                     Data data = mysnap.getValue(Data.class);
 
                     total += data.getAmount();

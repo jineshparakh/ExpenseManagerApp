@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.expensemanager"
-        minSdkVersion 16
+        minSdkVersion 28
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:0.4.0'
 
     implementation 'com.android.support:cardview-v7:30.+'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     implementation 'com.android.support:support-v4:30.+'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
